@@ -1,0 +1,39 @@
+html {
+    font-size: 15px; /* px means "pixels": the base font size is now 10 pixels high */
+    font-family: "Open Sans", sans-serif; /* this should be the rest of the output you got from Google Fonts */
+    background-color: rgb(224, 224, 224);
+}
+
+#content {
+    display: flex;
+    justify-content: space-around;
+    flex-flow: row wrap;
+    align-items: stretch;
+}
+
+.box {
+    flex-grow: 1;
+    border: 3px solid rgba(0, 0, 0, 0.2);
+    /*background-color: wheat;*/
+}
+
+.box1 {
+    flex-grow: 2;
+    border: 3px solid rgba(0, 0, 0, 0.2);
+}
+
+.content-box {
+    flex-direction: column;
+}
+
+.number-button {
+    flex-grow: 1;
+    border: 3px solid rgba(0, 0, 0, 0.2);
+    background-color: wheat;
+    height: 60px;
+    width:75px;
+    margin: 0 auto;
+    text-align: center;
+    font-size: 30px;
+}
+  
