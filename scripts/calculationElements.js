@@ -16,7 +16,7 @@ let getNewNumberButton = function createContentBox(parent, buttonNumber) {
 
 let getNewFunctionButton = function createContentBox(parent, id, textContent) {
     let buttonId = "button" + id;
-    element.getNewElementWithClass(parent, buttonId, "button", "number-button", textContent);
+    element.getNewElementWithClass(parent, buttonId, "button", "function-button", textContent);
     let buttonElement = document.getElementById(buttonId);
 }
 

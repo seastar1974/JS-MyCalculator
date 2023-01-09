@@ -36,6 +36,18 @@ html {
     text-align: center;
     font-size: 30px;
 }
+
+.function-button {
+    flex-grow: 1;
+    border: 3px solid rgba(0, 0, 0, 0.2);
+    background-color: rgb(245, 213, 154);
+    height: 60px;
+    width: 75px;
+    margin: 0 auto;
+    text-align: center;
+    font-size: 30px;
+}
+
 .result-button {
     flex-grow: 1;
     border: 3px solid rgba(0, 0, 0, 0.2);
