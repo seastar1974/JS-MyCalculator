@@ -26,47 +26,47 @@ let getNewResultButton = function createContentBox(parent, id, textContent) {
     let buttonElement = document.getElementById(buttonId);
 }
 
-export function printNumber0() {
+function printNumber0() {
     printNumber(0);
 }
 
-export function printNumber1() {
+function printNumber1() {
     printNumber(1);
 }
 
-export function printNumber2() {
+function printNumber2() {
     printNumber(2);
 }
 
-export function printNumber3() {
+function printNumber3() {
     printNumber(3);
 }
 
-export function printNumber4() {
+function printNumber4() {
     printNumber(4);
 }
 
-export function printNumber5() {
+function printNumber5() {
     printNumber(5);
 }
 
-export function printNumber6() {
+function printNumber6() {
     printNumber(6);
 }
 
-export function printNumber7() {
+function printNumber7() {
     printNumber(7);
 }
 
-export function printNumber8() {
+function printNumber8() {
     printNumber(8);
 }
 
-export function printNumber9() {
+function printNumber9() {
     printNumber(9);
 }
 
-function printNumber(number) {
+export function printNumber(number) {
     let labelResult = document.getElementById("lableResult");
 
     if (clearResultLabel || (labelResult.textContent == 0)) {
@@ -80,55 +80,55 @@ function printNumber(number) {
     clearResultLabel = false;
 }
 
-export function handleButtonCE() {
+function handleButtonCE() {
     let labelResult = document.getElementById("lableResult");
     labelResult.textContent = 0;
 }
 
-export function handleButtonC() {
+function handleButtonC() {
     let labelResult = document.getElementById("lableResult");
     labelResult.textContent = 0;
     resultString = 0;
 }
 
-export function handleButtonEraseLastDigit() {
+function handleButtonEraseLastDigit() {
     let labelResult = document.getElementById("lableResult");
     let numberString = labelResult.textContent;
     labelResult.textContent = numberString.slice(0, numberString.length - 1);
 }
 
-export function addNumbers() {
+function addNumbers() {
     calculation();
     addClicked = true;
     clearResultLabel = true;
 }
 
-export function substractNumbers() {
+function substractNumbers() {
     calculation();
     substractClicked = true;
     clearResultLabel = true;
 }
 
-export function multiplyNumbers() {
+function multiplyNumbers() {
     calculation();
     multiplyClicked = true;
     clearResultLabel = true;
 }
 
-export function divideNumbers() {
+function divideNumbers() {
     calculation();
     divideClicked = true;
     clearResultLabel = true;
 }
 
-export function resultClicked() {
+function resultClicked() {
     calculation();
     equalClicked = true;
     clearResultLabel = true;
 }
 
 
-export function calculation() {
+function calculation() {
     let labelResult = document.getElementById("lableResult");
     let newNumber = parseInt(labelResult.textContent);
     let resultStringAsInt = parseInt(resultString);
@@ -219,4 +219,4 @@ function setEventListeners() {
 }
 
 
-export { getNewNumberButton, getNewFunctionButton, getNewResultButton, printNumber, setEventListeners }
+export { getNewNumberButton, getNewFunctionButton, getNewResultButton, setEventListeners }
