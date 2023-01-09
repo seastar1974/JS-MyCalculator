@@ -2,6 +2,11 @@ import * as element from './createElements.js'
 
 export let resultString = 0;
 let clearResultLabel = false;
+let addClicked = false;
+let substractClicked = false;
+let multiplyClicked = false;
+let divideClicked = false;
+let equalClicked = false;
 
 let getNewNumberButton = function createContentBox(parent, buttonNumber) {
     let buttonId = "button" + buttonNumber;
@@ -59,6 +64,7 @@ function printNumber(number) {
     let labelResult = document.getElementById("lableResult");
 
     if (clearResultLabel || (labelResult.textContent == 0)) {
+        resultString = labelResult.textContent;
         labelResult.textContent = number;
     }
     else {
@@ -68,26 +74,79 @@ function printNumber(number) {
     clearResultLabel = false;
 }
 
-export function printNumberCE() {
+export function handleButtonCE() {
     let labelResult = document.getElementById("lableResult");
     labelResult.textContent = 0;
 }
 
-export function printNumberC() {
+export function handleButtonC() {
     let labelResult = document.getElementById("lableResult");
     labelResult.textContent = 0;
     resultString = 0;
 }
 
+export function handleButtonEraseLastDigit() {
+    let labelResult = document.getElementById("lableResult");
+    let numberString = labelResult.textContent;
+    labelResult.textContent = numberString.slice(0, numberString.length - 1);
+}
+
 export function addNumbers() {
+    calculation();
+    addClicked = true;
+    clearResultLabel = true;
+}
+
+export function substractNumbers() {
+    calculation();
+    substractClicked = true;
+    clearResultLabel = true;
+}
+
+export function multiplyNumbers() {
+    calculation();
+    multiplyClicked = true;
+    clearResultLabel = true;
+}
+
+export function divideNumbers() {
+    calculation();
+    divideClicked = true;
+    clearResultLabel = true;
+}
+
+export function resultClicked() {
+    calculation();
+    equalClicked = true;
+    clearResultLabel = true;
+}
+
+
+export function calculation() {
     let labelResult = document.getElementById("lableResult");
     let newNumber = parseInt(labelResult.textContent);
     let resultStringAsInt = parseInt(resultString);
 
-    resultString = newNumber + resultStringAsInt;
-    
-    labelResult.textContent = resultString;
-    clearResultLabel = true;
+    if (addClicked) {
+        resultString = resultStringAsInt + newNumber;
+        addClicked = false;
+        labelResult.textContent = resultString;
+    }
+    else if (substractClicked) {
+        resultString = resultStringAsInt - newNumber;
+        substractClicked = false;
+        labelResult.textContent = resultString;
+    }
+    else if (multiplyClicked) {
+        resultString = resultStringAsInt * newNumber;
+        multiplyClicked = false;
+        labelResult.textContent = resultString;
+    }
+    else if (divideClicked) {
+        resultString = resultStringAsInt / newNumber;
+        divideClicked = false;
+        labelResult.textContent = resultString;
+    }
 }
 
 function setEventListeners() {
@@ -102,11 +161,17 @@ function setEventListeners() {
     document.getElementById("button9").addEventListener("click", printNumber9);
     document.getElementById("button0").addEventListener("click", printNumber0);
 
-    document.getElementById("buttonCE").addEventListener("click", printNumberCE);
-    document.getElementById("buttonC").addEventListener("click", printNumberC);
-    document.getElementById("buttonAdd").addEventListener("click", addNumbers);
+    document.getElementById("buttonCE").addEventListener("click", handleButtonCE);
+    document.getElementById("buttonC").addEventListener("click", handleButtonC);
+    document.getElementById("buttonEraseLastDigit").addEventListener("click", handleButtonEraseLastDigit);
 
-    document.getElementById("buttonResult").addEventListener("click", addNumbers);
+    document.getElementById("buttonAdd").addEventListener("click", addNumbers);
+    document.getElementById("buttonSubstraction").addEventListener("click", substractNumbers);
+    document.getElementById("buttonMultiply").addEventListener("click", multiplyNumbers);
+    document.getElementById("buttonDivision").addEventListener("click", divideNumbers);
+    document.getElementById("buttonDivision").addEventListener("click", divideNumbers);
+
+    document.getElementById("buttonResult").addEventListener("click", resultClicked);
 }
 
 

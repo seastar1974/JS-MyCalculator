@@ -1,7 +1,10 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\images",
+    "\\scripts",
+    "\\styles"
   ],
-  "SelectedNode": "\\C:\\repos\\JS-MyCalculator",
+  "SelectedNode": "\\scripts\\calculationElements.js",
   "PreviewInSolutionExplorer": false
 }

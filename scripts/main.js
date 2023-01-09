@@ -24,7 +24,7 @@ let divElement3 = element.getNewElement(body, "content", "div", "");
 calc.getNewNumberButton(divElement3, 7);
 calc.getNewNumberButton(divElement3, 8);
 calc.getNewNumberButton(divElement3, 9);
-calc.getNewFunctionButton(divElement3, "Multiply", "X");
+calc.getNewFunctionButton(divElement3, "Multiply", "x");
 
 // Row 4
 let divElement4 = element.getNewElement(body, "content", "div", "");
