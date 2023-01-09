@@ -179,6 +179,9 @@ function handleKeyup(event) {
     else if (key == "Backspace") {
         handleButtonEraseLastDigit();
     }
+    else if (key == "Delete") {
+        handleButtonCE();
+    }
 
 }
 
