@@ -20,6 +20,12 @@ let getNewFunctionButton = function createContentBox(parent, id, textContent) {
     let buttonElement = document.getElementById(buttonId);
 }
 
+let getNewResultButton = function createContentBox(parent, id, textContent) {
+    let buttonId = "button" + id;
+    element.getNewElementWithClass(parent, buttonId, "button", "result-button", textContent);
+    let buttonElement = document.getElementById(buttonId);
+}
+
 export function printNumber0() {
     printNumber(0);
 }
@@ -149,6 +155,38 @@ export function calculation() {
     }
 }
 
+function handleKeyup(event) {
+    let key = event.key;
+
+    if (isKeyNumber(key)) {
+        printNumber(key);
+    }
+    else if (key == "+") {
+        addNumbers();
+    }
+    else if (key == "-") {
+        substractNumbers();
+    }
+    else if (key == "*") {
+        multiplyNumbers();
+    }
+    else if (key == "/") {
+        divideNumbers();
+    }
+    else if (key == "Enter") {
+        resultClicked();
+    }
+    else if (key == "Backspace") {
+        handleButtonEraseLastDigit();
+    }
+
+}
+
+function isKeyNumber(key) {
+    let result = ["1", "2", "", "4", "5", "6", "7", "8", "9", "0"].includes(key);
+    return result;
+}
+
 function setEventListeners() {
     document.getElementById("button1").addEventListener("click", printNumber1);
     document.getElementById("button2").addEventListener("click", printNumber2);
@@ -172,7 +210,10 @@ function setEventListeners() {
     document.getElementById("buttonDivision").addEventListener("click", divideNumbers);
 
     document.getElementById("buttonResult").addEventListener("click", resultClicked);
+
+    let body = document.querySelector("body");
+    body.addEventListener("keyup", handleKeyup);
 }
 
 
-export { getNewNumberButton, getNewFunctionButton, printNumber, setEventListeners }
+export { getNewNumberButton, getNewFunctionButton, getNewResultButton, printNumber, setEventListeners }

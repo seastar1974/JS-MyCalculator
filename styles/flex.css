@@ -36,4 +36,14 @@ html {
     text-align: center;
     font-size: 30px;
 }
+.result-button {
+    flex-grow: 1;
+    border: 3px solid rgba(0, 0, 0, 0.2);
+    background-color: rgb(249, 196, 97);
+    height: 60px;
+    width: 75px;
+    margin: 0 auto;
+    text-align: center;
+    font-size: 30px;
+}
   

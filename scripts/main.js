@@ -45,8 +45,7 @@ let divElement6 = element.getNewElement(body, "content", "div", "");
 calc.getNewFunctionButton(divElement6, "");
 calc.getNewNumberButton(divElement6, 0);
 calc.getNewFunctionButton(divElement6, ",");
-calc.getNewFunctionButton(divElement6, "Result", "=");
-
+calc.getNewResultButton(divElement6, "Result", "=");
 
 calc.setEventListeners();
 
