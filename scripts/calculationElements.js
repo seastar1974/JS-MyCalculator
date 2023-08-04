@@ -125,6 +125,7 @@ function resultClicked() {
     calculation();
     equalClicked = true;
     clearResultLabel = true;
+    resultString = 0;
 }
 
 

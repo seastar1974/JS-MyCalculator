@@ -12,6 +12,7 @@ let getNewElementWithClass = function createAndAddElementClassId(parent, id, ele
     let element = getNewElement(parent, id, elementType, textContent);
     element.className = className;
 
+
     return element;
 }
 
