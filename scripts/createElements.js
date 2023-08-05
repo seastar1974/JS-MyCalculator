@@ -8,9 +8,24 @@ let getNewElement = function createAndAddElementId(parent, id, elementType, text
     return element;
 }
 
+
 let getNewElementWithClass = function createAndAddElementClassId(parent, id, elementType, className, textContent) {
     let element = getNewElement(parent, id, elementType, textContent);
-    element.className = className;
+    element.classList.add(className);
+
+    return element;
+}
+
+let getNewButtonElementWithClass = function createAndAddButtonElementClassId(parent, id, elementType, className, textContent) {
+    let element = getNewElement(parent, id, elementType, textContent);
+    element.classList.add(className);
+    element.classList.add("buttonStart");
+
+    return element;
+}
+let getNewButtonHidden = function createAndAddHiddenButtonId(parent) {
+    let element = getNewElement(parent, "hidden", "div", "");
+     element.classList.add("buttonHidden");
 
     return element;
 }
@@ -66,4 +81,4 @@ let getNewBoxContent = function createContentBox(parent, id) {
     getNewElement(contentBox2, "textarea" + id, "textarea", "");
 }
 
-export { getNewElement, getNewElementWithClass, getNewLinkElement, getNewUnorderedList, getNewOrderedList, getNewImage, getNewBoxContent }
+export { getNewElement, getNewElementWithClass, getNewLinkElement, getNewUnorderedList, getNewOrderedList, getNewImage, getNewBoxContent, getNewButtonElementWithClass, getNewButtonHidden }
