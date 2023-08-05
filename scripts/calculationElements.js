@@ -1,4 +1,4 @@
-import * as element from './createElements.js'
+import * as ce from './createElements.js'
 
 export let resultString = 0;
 let clearResultLabel = false;
@@ -10,21 +10,74 @@ let equalClicked = false;
 
 let getNewNumberButton = function createContentBox(parent, buttonNumber) {
     let buttonId = "button" + buttonNumber;
-    element.getNewElementWithClass(parent, buttonId, "button", "number-button", buttonNumber);
-    let buttonElement = document.getElementById(buttonId);
+    let buttonTextId = "buttonText" + buttonNumber;
+    let element = ce.getNewButtonElementWithClass(parent, buttonId, "div", "number-button", "");
+    ce.getNewElementWithClass(element, buttonTextId, "div", "buttonText", buttonNumber);
+
+    setButtonEventListenerMouseDown(element, "buttonNumber-mousedown", "animation-resetNumberButton1", "animation-resetNumberButton2");
+
+    return element;
 }
 
 let getNewFunctionButton = function createContentBox(parent, id, textContent) {
     let buttonId = "button" + id;
-    element.getNewElementWithClass(parent, buttonId, "button", "function-button", textContent);
-    let buttonElement = document.getElementById(buttonId);
+    let buttonTextId = "buttonText" + id;
+    let element = ce.getNewButtonElementWithClass(parent, buttonId, "div", "function-button", "");
+    ce.getNewElementWithClass(element, buttonTextId, "div", "buttonText", textContent);
+  
+    setButtonEventListenerMouseDown(element, "buttonFunction-mousedown", "buttonFunction-mousedown", "buttonFunction-mousedown");
+
+    return element;
 }
 
 let getNewResultButton = function createContentBox(parent, id, textContent) {
     let buttonId = "button" + id;
-    element.getNewElementWithClass(parent, buttonId, "button", "result-button", textContent);
-    let buttonElement = document.getElementById(buttonId);
+    let buttonTextId = "buttonText" + id;
+    let element = ce.getNewButtonElementWithClass(parent, buttonId, "div", "result-button", "");
+    ce.getNewElementWithClass(element, buttonTextId, "div", "buttonText", textContent);
+    
+    setButtonEventListenerMouseDown(element, "buttonResult-mousedown", "animation-resetResultButton1", "animation-resetResultButton2");
+
+    return element;
 }
+
+function setButtonEventListenerMouseDown(element, colourClass, fadeClass1, fadeClass2) {
+    element.addEventListener("mousedown", function () {
+        element.classList.add(colourClass);
+    });
+
+    element.addEventListener("mouseup", function () {
+        element.addEventListener("animationend", function () {
+            element.classList.remove(colourClass);
+        });
+        switchTwoClasses(element, fadeClass1, fadeClass2);
+    });
+
+    element.addEventListener("mouseout", function () {
+        element.classList.remove(colourClass);
+    });
+}
+function switchTwoClasses(element, class1, class2) {
+    var addClass;
+    var removeClass;
+
+    if (element.classList.contains(class1)) {
+        element.classList.remove(class1);
+        addClass = class2;
+        removeClass = class1;
+    } else if (element.classList.contains(class2)) {
+      element.classList.remove(class2);
+      addClass = class1;
+      removeClass = class2;
+    } else {
+      addClass = class1;
+      removeClass = class2;
+    }
+    
+    element.classList.add(addClass);
+    element.classList.remove(removeClass);
+    return addClass;
+  }
 
 function printNumber0() {
     printNumber(0);
@@ -220,4 +273,4 @@ function setEventListeners() {
 }
 
 
-export { getNewNumberButton, getNewFunctionButton, getNewResultButton, setEventListeners }
+export { getNewNumberButton, getNewFunctionButton, getNewResultButton, setEventListeners, handleButtonCE }
