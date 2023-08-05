@@ -8,10 +8,8 @@ let body = document.querySelector("body");
 
 // Result box
 let divResult = element.getNewElementWithClass(body, "divResult", "div", "result-div", "");
-// let resultBox = document.getElementById("divResult");
-// resultBox.style = "background-color:rgb(190, 190, 190)";
-elementList.push(divResult);
 element.getNewElement(divResult, "lableResult", "label", "")
+elementList.push(divResult);
 
 // Row 2
 let divElement2 = element.getNewElement(body, "content", "div", "");
@@ -52,6 +50,8 @@ elementList.push(calc.getNewResultButton(divElement6, "Result", "="));
 calc.setEventListeners();
 calc.handleButtonCE();
 
+
+// Start animation
 function animateElement(element) {
     return new Promise(async function(resolve) {
         setTimeout(function() {
@@ -61,22 +61,9 @@ function animateElement(element) {
     });
 }
 
-function removeAnimateElement(element) {
-    return new Promise(async function(resolve) {
-        setTimeout(function() {
-            element.classList.remove("animation-buttonKeyframes");
-            resolve();
-        }, 0);
-    });
-}
-
-// Självexekvering
+// Executes it self
 (async function showElements() {
     for (const element of elementList) {
         await animateElement(element);
     }
-
-    // for (const element of elementList) {
-    //     await removeAnimateElement(element);
-    // }
 })();
