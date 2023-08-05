@@ -44,9 +44,9 @@ elementList.push(calc.getNewFunctionButton(divElement5, "Add", "+"));
 
 // Row 6
 let divElement6 = element.getNewElement(body, "content", "div", "");
-elementList.push(calc.getNewFunctionButton(divElement6, ""));
+element.getNewButtonHidden(divElement6);
 elementList.push(calc.getNewNumberButton(divElement6, 0));
-elementList.push(calc.getNewFunctionButton(divElement6, ","));
+element.getNewButtonHidden(divElement6);
 elementList.push(calc.getNewResultButton(divElement6, "Result", "="));
 
 calc.setEventListeners();
@@ -61,9 +61,22 @@ function animateElement(element) {
     });
 }
 
+function removeAnimateElement(element) {
+    return new Promise(async function(resolve) {
+        setTimeout(function() {
+            element.classList.remove("animation-buttonKeyframes");
+            resolve();
+        }, 0);
+    });
+}
+
 // Självexekvering
 (async function showElements() {
     for (const element of elementList) {
         await animateElement(element);
     }
+
+    // for (const element of elementList) {
+    //     await removeAnimateElement(element);
+    // }
 })();

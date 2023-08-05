@@ -66,14 +66,19 @@ function switchTwoClasses(element, class1, class2) {
         addClass = class2;
         removeClass = class1;
     } else if (element.classList.contains(class2)) {
-      element.classList.remove(class2);
-      addClass = class1;
-      removeClass = class2;
+        element.classList.remove(class2);
+        addClass = class1;
+        removeClass = class2;
     } else {
-      addClass = class1;
-      removeClass = class2;
+        addClass = class1;
+        removeClass = class2;
     }
     
+    if (!element.classList.contains("button")) {
+        element.classList.add("button");
+        element.classList.remove("buttonStart");
+    }
+
     element.classList.add(addClass);
     element.classList.remove(removeClass);
     return addClass;
