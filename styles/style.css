@@ -4,40 +4,6 @@ html {
     background-color: rgb(224, 224, 224);
 }
 
-h1 {
-    margin: 0;
-    padding: 20px 0;
-    font-size: 60px;
-    text-align: center;
-    text-shadow: 3px 3px 1 px rgb(219, 12, 150);
-}
-
-h4 {
-    color: darkmagenta;
-}
-
-ul, ol {
-    color: blueviolet;
-}
-
-p, li {
-    color: magenta;
-    font-size: 16px;
-    line-height: 2;
-    letter-spacing: 1px;
-}
-
-.my-class {
-    color:rgb(23, 231, 145);
-    font-weight: bold;
-}
-
-img {
-    width: 400px;
-    display: block;
-    margin: 0 auto;
-}
-
 body {
     width: 500px;
     margin: 0 auto;

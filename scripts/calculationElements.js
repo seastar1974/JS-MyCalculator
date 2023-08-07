@@ -8,127 +8,15 @@ let multiplyClicked = false;
 let divideClicked = false;
 let equalClicked = false;
 
-let getNewNumberButton = function createContentBox(parent, buttonNumber) {
-    let buttonId = "button" + buttonNumber;
-    let buttonTextId = "buttonText" + buttonNumber;
-    let element = ce.getNewButtonElementWithClass(parent, buttonId, "div", "number-button", "");
-    ce.getNewElementWithClass(element, buttonTextId, "div", "buttonText", buttonNumber);
-
-    setButtonEventListenerMouseDown(element, "buttonNumber-mousedown", "animation-resetNumberButton1", "animation-resetNumberButton2");
-
-    return element;
-}
-
-let getNewFunctionButton = function createContentBox(parent, id, textContent) {
-    let buttonId = "button" + id;
-    let buttonTextId = "buttonText" + id;
-    let element = ce.getNewButtonElementWithClass(parent, buttonId, "div", "function-button", "");
-    ce.getNewElementWithClass(element, buttonTextId, "div", "buttonText", textContent);
-  
-    setButtonEventListenerMouseDown(element, "buttonFunction-mousedown", "buttonFunction-mousedown", "buttonFunction-mousedown");
-
-    return element;
-}
-
-let getNewResultButton = function createContentBox(parent, id, textContent) {
-    let buttonId = "button" + id;
-    let buttonTextId = "buttonText" + id;
-    let element = ce.getNewButtonElementWithClass(parent, buttonId, "div", "result-button", "");
-    ce.getNewElementWithClass(element, buttonTextId, "div", "buttonText", textContent);
-    
-    setButtonEventListenerMouseDown(element, "buttonResult-mousedown", "animation-resetResultButton1", "animation-resetResultButton2");
-
-    return element;
-}
-
-function setButtonEventListenerMouseDown(element, colourClass, fadeClass1, fadeClass2) {
-    element.addEventListener("mousedown", function () {
-        element.classList.add(colourClass);
-    });
-
-    element.addEventListener("mouseup", function () {
-        element.addEventListener("animationend", function () {
-            element.classList.remove(colourClass);
-        });
-        switchTwoClasses(element, fadeClass1, fadeClass2);
-    });
-
-    element.addEventListener("mouseout", function () {
-        element.classList.remove(colourClass);
-    });
-}
-function switchTwoClasses(element, class1, class2) {
-    var addClass;
-    var removeClass;
-
-    if (element.classList.contains(class1)) {
-        element.classList.remove(class1);
-        addClass = class2;
-        removeClass = class1;
-    } else if (element.classList.contains(class2)) {
-        element.classList.remove(class2);
-        addClass = class1;
-        removeClass = class2;
-    } else {
-        addClass = class1;
-        removeClass = class2;
-    }
-    
-    if (!element.classList.contains("button")) {
-        element.classList.add("button");
-        element.classList.remove("buttonStart");
-    }
-
-    element.classList.add(addClass);
-    element.classList.remove(removeClass);
-    return addClass;
-  }
-
-function printNumber0() {
-    printNumber(0);
-}
-
-function printNumber1() {
-    printNumber(1);
-}
-
-function printNumber2() {
-    printNumber(2);
-}
-
-function printNumber3() {
-    printNumber(3);
-}
-
-function printNumber4() {
-    printNumber(4);
-}
-
-function printNumber5() {
-    printNumber(5);
-}
-
-function printNumber6() {
-    printNumber(6);
-}
-
-function printNumber7() {
-    printNumber(7);
-}
-
-function printNumber8() {
-    printNumber(8);
-}
-
-function printNumber9() {
-    printNumber(9);
-}
 
 export function printNumber(number) {
     let labelResult = document.getElementById("lableResult");
 
-    if (clearResultLabel || (labelResult.textContent == 0)) {
+    if (clearResultLabel) {
         resultString = labelResult.textContent;
+        labelResult.textContent = number;
+    }
+    else if (labelResult.textContent == 0) {
         labelResult.textContent = number;
     }
     else {
@@ -138,7 +26,7 @@ export function printNumber(number) {
     clearResultLabel = false;
 }
 
-function handleButtonCE() {
+export function handleButtonCE() {
     let labelResult = document.getElementById("lableResult");
     labelResult.textContent = 0;
 }
@@ -186,7 +74,6 @@ function resultClicked() {
     resultString = 0;
 }
 
-
 function calculation() {
     let labelResult = document.getElementById("lableResult");
     let newNumber = parseInt(labelResult.textContent);
@@ -214,52 +101,98 @@ function calculation() {
     }
 }
 
+function handleKeyDown(event) {
+    let key = event.key;
+    let element;
+
+    if (isKeyNumber(key)) {
+        element = document.getElementById("button" + key);
+    }
+    else if (key == "+") {
+        element = document.getElementById("buttonAdd");
+    }
+    else if (key == "-") {
+        element = document.getElementById("buttonSubstraction");
+    }
+    else if (key == "*") {
+        element = document.getElementById("buttonMultiply");
+    }
+    else if (key == "/") {
+        element = document.getElementById("buttonDivision");
+    }
+    else if (key == "Enter") {
+        element = document.getElementById("buttonResult");
+    }
+    else if (key == "Backspace") {
+        element = document.getElementById("buttonEraseLastDigit");
+    }
+    else if (key == "Delete") {
+        element = document.getElementById("buttonCE");
+    }
+
+    if (element != null) {
+        element.dispatchEvent(new Event('mousedown'));
+    }
+}
+
 function handleKeyup(event) {
     let key = event.key;
+    let element;
 
     if (isKeyNumber(key)) {
         printNumber(key);
+        element = document.getElementById("button"+key);
     }
     else if (key == "+") {
         addNumbers();
+        element = document.getElementById("buttonAdd");
     }
     else if (key == "-") {
         substractNumbers();
+        element = document.getElementById("buttonSubstraction");
     }
     else if (key == "*") {
         multiplyNumbers();
+        element = document.getElementById("buttonMultiply");
     }
     else if (key == "/") {
         divideNumbers();
+        element = document.getElementById("buttonDivision");
     }
     else if (key == "Enter") {
         resultClicked();
+        element = document.getElementById("buttonResult");
     }
     else if (key == "Backspace") {
         handleButtonEraseLastDigit();
+        element = document.getElementById("buttonEraseLastDigit");
     }
     else if (key == "Delete") {
         handleButtonCE();
+        element = document.getElementById("buttonCE");
     }
 
+    if (element != null) {
+        element.dispatchEvent(new Event('mouseup'));
+    }
 }
 
 function isKeyNumber(key) {
-    let result = ["1", "2", "", "4", "5", "6", "7", "8", "9", "0"].includes(key);
+    let result = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"].includes(key);
     return result;
 }
 
-function setEventListeners() {
-    document.getElementById("button1").addEventListener("click", printNumber1);
-    document.getElementById("button2").addEventListener("click", printNumber2);
-    document.getElementById("button3").addEventListener("click", printNumber3);
-    document.getElementById("button4").addEventListener("click", printNumber4);
-    document.getElementById("button5").addEventListener("click", printNumber5);
-    document.getElementById("button6").addEventListener("click", printNumber6);
-    document.getElementById("button7").addEventListener("click", printNumber7);
-    document.getElementById("button8").addEventListener("click", printNumber8);
-    document.getElementById("button9").addEventListener("click", printNumber9);
-    document.getElementById("button0").addEventListener("click", printNumber0);
+export function     setEventListeners() {
+    document.getElementById("button1").addEventListener ("click", function() { printNumber(1); } );
+    document.getElementById("button2").addEventListener("click", function() { printNumber(2); } );
+    document.getElementById("button3").addEventListener("click", function() { printNumber(3); } );
+    document.getElementById("button4").addEventListener("click", function() { printNumber(4); } );
+    document.getElementById("button5").addEventListener("click", function() { printNumber(5); } );
+    document.getElementById("button6").addEventListener("click", function() { printNumber(6); } );
+    document.getElementById("button7").addEventListener("click", function() { printNumber(7); } );
+    document.getElementById("button8").addEventListener("click", function() { printNumber(8); } );
+    document.getElementById("button9").addEventListener("click", function() { printNumber(9); } );
+    document.getElementById("button0").addEventListener("click", function() { printNumber(0); } );
 
     document.getElementById("buttonCE").addEventListener("click", handleButtonCE);
     document.getElementById("buttonC").addEventListener("click", handleButtonC);
@@ -274,8 +207,8 @@ function setEventListeners() {
     document.getElementById("buttonResult").addEventListener("click", resultClicked);
 
     let body = document.querySelector("body");
+    body.addEventListener("keydown", handleKeyDown);
     body.addEventListener("keyup", handleKeyup);
 }
 
 
-export { getNewNumberButton, getNewFunctionButton, getNewResultButton, setEventListeners, handleButtonCE }

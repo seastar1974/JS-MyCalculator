@@ -8,7 +8,6 @@ let getNewElement = function createAndAddElementId(parent, id, elementType, text
     return element;
 }
 
-
 let getNewElementWithClass = function createAndAddElementClassId(parent, id, elementType, className, textContent) {
     let element = getNewElement(parent, id, elementType, textContent);
     element.classList.add(className);
@@ -23,6 +22,7 @@ let getNewButtonElementWithClass = function createAndAddButtonElementClassId(par
 
     return element;
 }
+
 let getNewButtonHidden = function createAndAddHiddenButtonId(parent) {
     let element = getNewElement(parent, "hidden", "div", "");
      element.classList.add("buttonHidden");
@@ -30,55 +30,80 @@ let getNewButtonHidden = function createAndAddHiddenButtonId(parent) {
     return element;
 }
 
-// Link element
-let getNewLinkElement = function createLinkElement(parent, href, textContent) {
-    let linkElement = document.createElement("a");
-    linkElement.href = href;
-    linkElement.textContent = textContent;
-    parent.append(linkElement);
+export let getNewNumberButton = function createContentBox(parent, buttonNumber) {
+    let buttonId = "button" + buttonNumber;
+    let buttonTextId = "buttonText" + buttonNumber;
+    let element = getNewButtonElementWithClass(parent, buttonId, "div", "number-button", "");
+    getNewElementWithClass(element, buttonTextId, "div", "buttonText", buttonNumber);
+
+    setButtonEventListenerMouseDown(element, "buttonNumber-mousedown", "animation-resetNumberButton1", "animation-resetNumberButton2");
+
+    return element;
 }
 
-// Unordered list
-let getNewUnorderedList = function createUnorderedList(parent, labelText, itemNames) {
-    let olGroup = createAndAddElement(parent, "div", "");
-    createAndAddElementClass(olGroup, "link-label", "label", labelText);
-    let olList = createAndAddElement(olGroup, "ul", "");
+export let getNewFunctionButton = function createContentBox(parent, id, textContent) {
+    let buttonId = "button" + id;
+    let buttonTextId = "buttonText" + id;
+    let element = getNewButtonElementWithClass(parent, buttonId, "div", "function-button", "");
+    getNewElementWithClass(element, buttonTextId, "div", "buttonText", textContent);
+  
+    setButtonEventListenerMouseDown(element, "buttonFunction-mousedown", "buttonFunction-mousedown", "buttonFunction-mousedown");
 
-    let nameArray = [...itemNames];
-    nameArray.forEach(name => {
-        createAndAddElement(olList, "li", name)
+    return element;
+}
+
+export let getNewResultButton = function createContentBox(parent, id, textContent) {
+    let buttonId = "button" + id;
+    let buttonTextId = "buttonText" + id;
+    let element = getNewButtonElementWithClass(parent, buttonId, "div", "result-button", "");
+    getNewElementWithClass(element, buttonTextId, "div", "buttonText", textContent);
+    
+    setButtonEventListenerMouseDown(element, "buttonResult-mousedown", "animation-resetResultButton1", "animation-resetResultButton2");
+
+    return element;
+}
+
+export function setButtonEventListenerMouseDown(element, colourClass, fadeClass1, fadeClass2) {
+    element.addEventListener("mousedown", function () {
+        element.classList.add(colourClass);
+    });
+
+    element.addEventListener("mouseup", function () {
+        element.addEventListener("animationend", function () {
+            element.classList.remove(colourClass);
+        });
+        switchTwoClasses(element, fadeClass1, fadeClass2);
+    });
+
+    element.addEventListener("mouseout", function () {
+        element.classList.remove(colourClass);
     });
 }
 
-// Ordered list
-let getNewOrderedList = function createOrderedList(parent, labelText, itemNames) {
-    let olGroup = createAndAddElement(parent, "div", "");
-    createAndAddElementClass(olGroup, "link-label", "label", labelText);
-    let olList = createAndAddElement(olGroup, "ol", "");
+export function switchTwoClasses(element, class1, class2) {
+    var addClass;
+    var removeClass;
 
-    let nameArray = [...itemNames];
-    nameArray.forEach(name => {
-        createAndAddElement(olList, "li", name)
-    });
+    if (element.classList.contains(class1)) {
+        addClass = class2;
+        removeClass = class1;
+    } else if (element.classList.contains(class2)) {
+        addClass = class1;
+        removeClass = class2;
+    } else {
+        addClass = class1;
+        removeClass = class2;
+    }
+    
+    if (!element.classList.contains("button")) {
+        element.classList.add("button");
+        element.classList.remove("buttonStart");
+    }
+
+    element.classList.add(addClass);
+    element.classList.remove(removeClass);
+    return addClass;
 }
 
-// Images
-let getNewImage = function createImage(parent, src, alt) {
-    let imageItem = createAndAddElement(parent, "img", "");
-    imageItem.src = src;
-    imageItem.alt = alt;
-    parent.append(imageItem);
-}
 
-// Input content in box
-let getNewBoxContent = function createContentBox(parent, id) {
-    let cbName = "contentBox" + id + "A";
-    let contentBox1 = getNewElementWithClass(parent, cbName, "div", "content-box", "");
-    getNewElement(contentBox1, "label" + id, "lable", "Lable" + id);
-
-    cbName = "contentBox" + id + "B";
-    let contentBox2 = getNewElementWithClass(parent, cbName, "div", "content-box", "");
-    getNewElement(contentBox2, "textarea" + id, "textarea", "");
-}
-
-export { getNewElement, getNewElementWithClass, getNewLinkElement, getNewUnorderedList, getNewOrderedList, getNewImage, getNewBoxContent, getNewButtonElementWithClass, getNewButtonHidden }
+export { getNewElement, getNewElementWithClass, getNewButtonElementWithClass, getNewButtonHidden }
