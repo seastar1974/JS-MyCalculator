@@ -172,7 +172,9 @@ function handleKeyup(event) {
         element = document.getElementById("buttonCE");
     }
 
-    element.dispatchEvent(new Event('mouseup'));
+    if (element != null) {
+        element.dispatchEvent(new Event('mouseup'));
+    }
 }
 
 function isKeyNumber(key) {
@@ -180,7 +182,7 @@ function isKeyNumber(key) {
     return result;
 }
 
-export function setEventListeners() {
+export function     setEventListeners() {
     document.getElementById("button1").addEventListener ("click", function() { printNumber(1); } );
     document.getElementById("button2").addEventListener("click", function() { printNumber(2); } );
     document.getElementById("button3").addEventListener("click", function() { printNumber(3); } );
