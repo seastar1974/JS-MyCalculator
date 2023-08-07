@@ -1,0 +1,68 @@
+#content {
+    display: flex;
+    justify-content: space-around;
+    flex-flow: row wrap;
+    align-items: stretch;
+}
+
+.result-div {
+    height: 50px;
+    margin: 0 auto;
+    background-color: rgb(190, 190, 190);
+    border: 3px solid gray;
+    border-radius: 10px;
+    text-align: right;
+    font-size: 40px;
+    transform: scale(0.7) translateY(30px);
+}
+
+.button {
+    position: relative;
+    flex-grow: 1;
+    border: 3px solid rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    height: 60px;
+    width:75px;
+    margin: 2px;
+}
+
+.buttonHidden {
+    position: relative;
+    flex-grow: 1;
+    border: 3px solid rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    height: 60px;
+    width:75px;
+    margin: 2px;
+    visibility: hidden;
+}
+
+.buttonStart {
+    position: relative;
+    flex-grow: 1;
+    border: 3px solid rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    height: 60px;
+    width:75px;
+    margin: 2px;
+    transform: scale(0.7) translateY(30px);
+}
+
+.buttonText {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 30px;
+}
+.number-button {
+    background-color: rgb(252, 215, 146);
+}
+
+.function-button {
+    background-color: rgb(250, 194, 91);
+}
+
+.result-button {
+    background-color: rgb(247, 165, 12);
+}

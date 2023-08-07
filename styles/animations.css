@@ -1,0 +1,76 @@
+/* Start animations */
+@keyframes buttonKeyframes {
+    to {transform: scale(1) translateY(0px)};
+}
+
+.animation-buttonKeyframes {
+    animation-name: buttonKeyframes;
+    animation-duration: 0.5s;
+    /* animation-timing-function: cubic-bezier(1,1,1,1); */
+    animation-timing-function: ease-out;
+    animation-fill-mode: forwards;
+}
+
+/* Button number click animations */
+
+.buttonNumber-mousedown {
+    background-color: rgba(252, 215, 146, 0.1);
+}
+
+@keyframes buttonNumberKeyframes1 {
+    to {background-color: rgba(252, 215, 146, 1)};
+}
+
+.animation-resetNumberButton1 {
+    animation-name: buttonNumberKeyframes1;
+    animation-duration: 1s;
+    /* animation-timing-function: cubic-bezier(1,1,1,1); */
+    animation-timing-function: ease-out;
+    animation-fill-mode: forwards;
+}
+
+@keyframes buttonNumberKeyframes2 {
+    to {background-color: rgba(252, 215, 146, 1)};
+}
+
+.animation-resetNumberButton2 {
+    animation-name: buttonNumberKeyframes2;
+    animation-duration: 1s;
+    /* animation-timing-function: cubic-bezier(1,1,1,1); */
+    animation-timing-function: ease-out;
+    animation-fill-mode: forwards;
+}
+
+/* Button function */
+.buttonFunction-mousedown {
+    background: rgba(250, 194, 91, 0.1);
+}
+
+/* Button result */
+.buttonResult-mousedown {
+    background: rgba(247, 165, 12, 0.1);
+}
+
+@keyframes buttonResultKeyframes1 {
+    to {background-color: rgba(247, 165, 12, 1)};
+}
+
+.animation-resetResultButton1 {
+    animation-name: buttonResultKeyframes1;
+    animation-duration: 1s;
+    /* animation-timing-function: cubic-bezier(1,1,1,1); */
+    animation-timing-function: ease-out;
+    animation-fill-mode: forwards;
+}
+
+@keyframes buttonResultKeyframes2 {
+    to {background-color: rgba(247, 165, 12, 1)};
+}
+
+.animation-resetResultButton2 {
+    animation-name: buttonResultKeyframes2;
+    animation-duration: 1s;
+    /* animation-timing-function: cubic-bezier(1,1,1,1); */
+    animation-timing-function: ease-out;
+    animation-fill-mode: forwards;
+}
